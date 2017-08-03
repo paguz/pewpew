@@ -40,7 +40,7 @@ namespace gfx{
 
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 
-    SDL_Surface* surf = IMG_Load("gfx/16x16.png");
+    SDL_Surface* surf = IMG_Load("../gfx/16x16.png");
 
     if(surf == NULL)
       std::cout << "Could not open gfx/16x16.png" << std::endl;
