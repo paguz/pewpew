@@ -1,44 +1,44 @@
+#include "game.h"
 #include "graphics.h"
+#include "debug.h"
 #include <iostream>
-int main(){
+#include <memory>
 
+class GameState;
+
+int main(int argc, char *argv[]){
+
+  if(argc >= 2){
+    std::string debugFlag = argv[1];
+    if(debugFlag == "-d"){
+      Debug::Init(true);
+    }
+    else{
+      Debug::Init(false);
+    }
+  }
+  
   gfx::Init();
 
-  bool isRunning = true;
-  
-  while(isRunning){
+  std::unique_ptr<State> gameState(new GameState());
+  states::push(std::move(gameState));
 
-    SDL_Event event;
+  while(!states::is_empty()){
 
-    while(SDL_PollEvent(&event)){
-      switch(event.type){
-      case SDL_QUIT:
-	isRunning = false;
-	break;
-            
-      case SDL_KEYDOWN:
-	switch(event.key.keysym.sym){
-	case SDLK_ESCAPE:
-	  isRunning = false;
-	  break;
-	}
-	
-      }
-    } // while events
+    states::start();
 
-      // Render
-      gfx::Clear();
-      gfx::renderTile(0, 10, 10);
-      gfx::renderTile(1, 30, 10);
-      gfx::Flip();
+    if(states::is_empty()){
+      break;
+    }
+
+    states::draw();
+
+    states::update();
     
-    
-    } // main while
+  } // while
 
+  gfx::Cleanup();
   
-    // Cleanup
-    gfx::Cleanup();
+  return 0;
   
-    return 0;
-  
-  } // main
+} // main

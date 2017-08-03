@@ -16,8 +16,9 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME} src/main.cpp
                         src/graphics.cpp
-                        src/main.cpp
-                        src/main.cpp)
+                        src/debug.cpp
+                        src/game.cpp
+			src/state.cpp)
 
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
