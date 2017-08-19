@@ -18,7 +18,8 @@ add_executable(${PROJECT_NAME} src/main.cpp
                         src/graphics.cpp
                         src/debug.cpp
                         src/game.cpp
-			src/state.cpp)
+			src/state.cpp
+			src/map.cpp)
 
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

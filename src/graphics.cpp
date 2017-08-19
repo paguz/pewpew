@@ -11,14 +11,14 @@ namespace gfx{
 
       SDL_Rect getTileFromId(int id){
 
-	SDL_Rect rect = {0,0,16,16};
+	SDL_Rect rect = {0,0,g::TILE_SIZE,g::TILE_SIZE};
 	switch(id){
 	case 0:
 	  rect.x = 0;
 	  rect.y = 0;
 	  break;
 	case 1:
-	  rect.x = 16;
+	  rect.x = g::TILE_SIZE;
 	  rect.y = 0;
 	  break;
 	}
@@ -71,7 +71,7 @@ namespace gfx{
 
     SDL_Rect srcRct = getTileFromId(id);
     
-    SDL_Rect dstRct = {x, y, 16, 16};
+    SDL_Rect dstRct = {x, y, g::TILE_SIZE, g::TILE_SIZE};
     
     SDL_RenderCopy(_renderer, _tilesheet, &srcRct, &dstRct);
     

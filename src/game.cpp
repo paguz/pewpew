@@ -1,24 +1,25 @@
 #include "game.h"
 #include "graphics.h"
+#include "map.h"
 
 namespace Game{
 
   bool isRunning = false;
 
   void Init(){    
-    isRunning = true;    
+    isRunning = true;
+    Map::Init();
   }
 
   void Cleanup(){
-
+    Map::Cleanup();
   }
 
   void Render(){
     gfx::Clear();
 
     // Render Stuff Here
-    gfx::renderTile(0, 10, 10);
-    gfx::renderTile(1, 30, 10);
+    Map::Render();
     
     gfx::Flip();
     
